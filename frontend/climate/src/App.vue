@@ -12,8 +12,9 @@
         needleColor: '#410082',
         arcDelimiters: [40, 50, 75, 85],
         arcColors: ['#B81D13', '#EFB700', '#008450', '#EFB700', '#B81D13'],
-        arcOverEffect: true,
+        arcOverEffect: false,
         chartWidth: 500,
+        needleUpdateSpeed: 0,
         hasNeedle: true,
       }"
     />
@@ -53,7 +54,8 @@ export default {
         needleColor: '#410082',
         arcDelimiters: [30, 40, 60, 80],
         arcColors: ['#B81D13', '#EFB700', '#008450', '#EFB700', '#B81D13'],
-        arcOverEffect: true,
+        arcOverEffect: false,
+        needleUpdateSpeed: 0,
         chartWidth: 500,
         hasNeedle: true
       };
