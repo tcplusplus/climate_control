@@ -1,0 +1,13 @@
+[Unit]
+Description=Carbonne Climate Control Frontend
+
+[Service]
+ExecStart=/bin/bash -ce "python3 -m http.server 80 >> climate-frontend.log 2>&1"
+WorkingDirectory=/home/tomc/frontend
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target

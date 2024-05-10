@@ -1,0 +1,13 @@
+[Unit]
+Description=Carbonne Climate Control
+
+[Service]
+ExecStart=/bin/bash -ce "./start.sh >> climate.log 2>&1"
+WorkingDirectory=/home/tomc/climate_control
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=tomc
+
+[Install]
+WantedBy=multi-user.target

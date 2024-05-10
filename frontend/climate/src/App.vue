@@ -1,11 +1,11 @@
 <template>
-  <h1>Carbone Climate Control</h1>
+  <h1>Carbonne Climate Control</h1>
   <div class="container">
     <vue-gauge
       :key="`temperature_${temperature}`"
       refid="temperature"
       class="metricsGauge"
-      style="translate: 25%"
+      style="translate: 25%;"
       :options="{
         needleValue: temperatureNeedle,
         centralLabel: temperature + '°C',
@@ -13,7 +13,7 @@
         arcDelimiters: [40, 50, 75, 85],
         arcColors: ['#B81D13', '#EFB700', '#008450', '#EFB700', '#B81D13'],
         arcOverEffect: false,
-        chartWidth: 500,
+        chartWidth: 250,
         needleUpdateSpeed: 0,
         hasNeedle: true,
       }"
@@ -24,7 +24,7 @@
       :key="`humidity_${humidity}`"
       refid="humidity"
       class="metricsGauge"
-      style="translate: -25%"
+      style="translate: -25%;"
       :options="humOptions"
     />
 
@@ -34,6 +34,7 @@
 
 <script>
 import VueGauge from "vue-gauge";
+import axios from "axios";
 
 export default {
   components: { VueGauge },
@@ -56,15 +57,18 @@ export default {
         arcColors: ['#B81D13', '#EFB700', '#008450', '#EFB700', '#B81D13'],
         arcOverEffect: false,
         needleUpdateSpeed: 0,
-        chartWidth: 500,
+        chartWidth: 250,
         hasNeedle: true
       };
     }
   },
   mounted () {
     setInterval(() => {
-      this.temperature = Math.floor(Math.random() * 30);
-      this.humidity = Math.floor(Math.random() * 100);
+        axios.get('http://localhost:8000/climate')
+             .then(response => {
+                this.temperature = Math.floor(response.data.temperature * 10)/10;
+                this.humidity = Math.floor(response.data.humidity * 10)/10;
+             });
     }, 2000);
   }
 };
@@ -94,8 +98,7 @@ body, html {
 }
 
 .metricsGauge {
-  scale: 0.5;
-  margin-top: -15%;
+  margin-top: 0%;
 }
 
 .temp-label {

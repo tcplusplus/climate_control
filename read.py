@@ -9,7 +9,7 @@ DHT10_STATUS_REG = 0x71
 
 
 def read_dht10():
-    bus = smbus.SMBus(1)  # Initialize the SMBus for I2C communication
+    bus = smbus.SMBus(4)  # Initialize the SMBus for I2C communication
 
     # Initialize the DHT10 sensor
     bus.write_i2c_block_data(DHT10_ADDR, DHT10_INIT_CMD[0], DHT10_INIT_CMD[1:])
